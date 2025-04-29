@@ -39,9 +39,10 @@ Follow these steps to install and use the extension:
    - Select the project folder where the extension code is located (the folder where you cloned the repository).
 
   For Firefox:
-   - Open about:debugging in your Firefox browser.
-   - Click on This Firefox.
-   - Click on Load Temporary Add-on and select the manifest.json file in your project folder.
+   - Open chrome://extensions/ in your Chrome browser.
+   - Enable Developer Mode at the top-right of the page.
+   - Click on Load Unpacked.
+   - Select the project folder where the extension code is located (the folder where you cloned the repository).
 
 4. **Use the Extension:**
 
