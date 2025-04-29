@@ -280,19 +280,26 @@ function enableDrag(element) {
   });
 }
 
+// Function to remove the floating player when no music is playing
+function removeFloatingPlayer() {
+  const player = document.getElementById("floating-player");
+  if (player) {
+    player.remove();
+  }
+}
+
 chrome.runtime.onMessage.addListener((message) => {
   if (message.type === "songInfo") {
-    const { title, artist, currentTime, duration } = message.data;
-    const player = document.getElementById("floating-player");
+    const { title, artist, currentTime, duration } = message.data || {};
   
     // Remove player if no song is playing
     if (!title && !artist) {
-      if (player) player.remove();
+      removeFloatingPlayer();
       return;
     }
   
     // If player doesn't exist, create it
-    if (!player) createFloatingPlayer();
+    if (!document.getElementById("floating-player")) createFloatingPlayer();
   
     // Update the text
     const songInfo = document.getElementById("song-info");
@@ -315,35 +322,50 @@ chrome.runtime.onMessage.addListener((message) => {
   }
 });
 
+// Initialize player if there's already song info available
 chrome.runtime.sendMessage({ type: "getSongInfo" }, (songInfo) => {
   const { title, artist } = songInfo || {};
   
-  // ⛔ Don't show player if no valid song info
+  // If no valid song info, don't show player
   if (!title && !artist) return;
 
-  // ✅ Create player if it's not already there
-  const player = document.getElementById("floating-player");
-  if (!player) createFloatingPlayer();
+  // Create player if it's not already there
+  if (!document.getElementById("floating-player")) createFloatingPlayer();
 
-  // ✅ Update the song info text
+  // Update the song info text
   const info = document.getElementById("song-info");
   if (info) {
     info.textContent = `${title} - ${artist}`;
   }
 });
 
+// Check song info periodically
+function checkSongInfoStatus() {
+  chrome.runtime.sendMessage({ type: "getSongInfo" }, (songInfo) => {
+    const { title, artist } = songInfo || {};
+    
+    // If no song info, remove the player
+    if (!title && !artist) {
+      removeFloatingPlayer();
+    }
+  });
+}
 
 // Only create player if we're on a music site
 if (isMusicSite()) {
   createFloatingPlayer();
-  setInterval(updateProgressBar, 1000)
+  setInterval(updateProgressBar, 1000);
   setInterval(updateSongInfo, 1000);
 } else {
+  // Not a music site, initialize based on background state
   chrome.runtime.sendMessage({ type: "getSongInfo" }, (response) => {
     if (response && response.title) {
       createFloatingPlayer();
       setInterval(updateSongInfo, 1000);
-      setInterval(updateProgressBar, 1000); 
+      setInterval(updateProgressBar, 1000);
     }
   });
+  
+  // Periodically check if we should still show the player
+  setInterval(checkSongInfoStatus, 2000);
 }
