@@ -28,7 +28,7 @@ Follow these steps to install and use the extension:
 
 2. **Navigate to the project directory:**
    ```bash
-   cd "Tune Flow"
+   cd "Tune-Flow"
 
 3. **Install the Extension in your Browser:**
    
