@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+  "name": "TuneFlow",
+  "version": "2.0",
+  "description": "TuneFlow: A sleek and draggable floating music player that lets you control playback on YouTube Music and Spotify with ease.",
+  "permissions": [
+    "tabs",
+    "*://music.youtube.com/*",
+    "*://open.spotify.com/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://music.youtube.com/*", "*://open.spotify.com/*"],
+      "js": ["controller.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["player.css"]
+    }
+  ],
+  "browser_action": {
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    },
+    "default_title": "Floating Music Controller"
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  }
+}
