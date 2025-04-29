@@ -37,8 +37,8 @@ Follow these steps to install and use the extension:
    - Enable Developer Mode at the top-right of the page.
    - Click on Load Unpacked.
    - Select the project folder where the extension code is located (the folder where you cloned the repository).
-
-  For Firefox:
+  
+    For Firefox:
    - Open chrome://extensions/ in your Chrome browser.
    - Enable Developer Mode at the top-right of the page.
    - Click on Load Unpacked.
@@ -46,6 +46,6 @@ Follow these steps to install and use the extension:
 
 4. **Use the Extension:**
 
-   Once the extension is installed, go to YouTube Music.
-  The floating player should appear, displaying the current song name.
-  You can use the controls in the floating player to play/pause, skip, or go back to songs while browsing other websites.
+- Once the extension is installed, go to YouTube Music.
+- The floating player should appear, displaying the current song name.
+- You can use the controls in the floating player to play/pause, skip, or go back to songs while browsing other websites.
