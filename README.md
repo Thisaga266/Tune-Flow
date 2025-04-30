@@ -26,11 +26,7 @@ Follow these steps to install and use the extension:
    ```bash
    git clone https://github.com/Thisaga266/Tune-Flow.git
 
-2. **Navigate to the project directory:**
-   ```bash
-   cd "Tune-Flow"
-
-3. **Install the Extension in your Browser:**
+2. **Install the Extension in your Browser:**
    
    For Chrome:
    - Open chrome://extensions/ in your Chrome browser.
