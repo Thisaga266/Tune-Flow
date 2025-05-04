@@ -16,7 +16,7 @@
   width: 300px; /* Fixed starting width */
   height: 100px;
   min-width: 300px; /* Prevent resizing below 300px */
-  min-height: 100px; /* Minimum height for resizing */
+  min-height: 110px; /* Minimum height for resizing */
   max-width: 700px; /* Optional: Maximum width for resizing */
   max-height: 300px; /* Optional: Maximum height for resizing */
   resize: both; /* Allow resizing both width and height */
